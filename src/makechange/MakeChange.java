@@ -17,7 +17,11 @@ public class MakeChange {
 		// First step is to check if they have given enough money
 		if (itemPrice > payment) {
 			System.out.println("Error: You did not give enough money to pay for item.");
-		} else {
+		} 
+		else if (itemPrice == payment) {
+			System.out.println("You gave the exact amount! No change for you.");
+		}
+		else {
 			// If they have given enough money then subtract itemPrice from payment to get
 			// change
 
