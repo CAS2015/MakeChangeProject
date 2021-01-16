@@ -8,9 +8,63 @@ public class MakeChange {
 		
 		double itemPrice = getItemPrice(sc);
 		double payment = getPayment(sc);
-		System.out.println(itemPrice + " : " + payment);
+		makeChange(itemPrice, payment);
 		
 		sc.close();
+	}
+
+	private static void makeChange(double itemPrice, double payment) {
+		// First step is to check if they have given enough money
+		if (itemPrice > payment) {
+			System.out.println("Error: You did not give enough money to pay for item.");
+		}
+		
+		// If they have given enough money then subtract itemPrice from payment to get change
+		
+		double change = payment - itemPrice;
+		int bills = (int) change;
+		int coins = (int) (change * 100 - bills * 100);
+		
+		// convert change into denominations
+		System.out.print("Your change is: ");
+		if (bills >= 20) {
+			int denomination = (int) bills/20;
+			System.out.print(denomination + "-$20  ");
+			bills %= 20;
+		}
+		if (bills >= 10) {
+			int denomination = (int) bills/10;
+			System.out.print(denomination + "-$10  ");
+			bills %= 10;
+		}
+		if (bills >= 5) {
+			int denomination = (int) bills/5;
+			System.out.print(denomination + "-$5  ");
+			bills %= 5;
+		}
+		if (bills >= 1) {
+			System.out.print(bills + "-$1  ");
+		}
+		if (coins >= 25) {
+			int denomination = (int) coins/25;
+			System.out.print(denomination + "-25c  ");
+			coins %= 25;
+		}
+		if (coins >= 10 ) {
+			int denomination = (int) coins/10;
+			System.out.print(denomination + "-10c  ");
+			coins %= 10;
+		}
+		if (coins >= 5) {
+			int denomination = (int) coins/5;
+			System.out.print(denomination + "-5c  ");
+			coins %= 5;
+		}
+		if (coins >= 1) {
+			System.out.print(coins + "-1c  ");
+		}
+
+		
 	}
 
 	private static double getPayment(Scanner sc) {
@@ -31,5 +85,7 @@ public class MakeChange {
 		
 		return itemPrice;
 	}
+	
+	
 	
 }
