@@ -2,22 +2,36 @@
 
 ### Description
 
-This is the description of the Project
+This is a program that calculates the amount of change returned to a customer
+based on the purchase price and the amount tendered.
+
+The change is given in terms of how many pieces of each currency is needed using
+the largest denominations possible.
 
 ### Topics and Technologies Used
 
-Where I would list what Technologies I'm using:
+Technologies used in this program:
 * Conditionals (if/else)
-* Looping (for loops)
+* Multiple methods
+* Casting data types
+* Keyboard inputs
 
 ### How to Run
 
-Run the application. (or say what steps/ inputs the user needs to do)... tell
-them how to get your program running and maybe how to use as well
-(this is the beginning of portfolio so this is used by potential
-employers to see what you've done... they likely will ONLY read the readme
-because they don't want to run some rando code)
+Run the application. The user will be prompted for the item price and the amount
+tendered. The output will be the change given to the user in the largest
+denominations possible.
 
 ### Lessons Learned
 
-Where did I get stuck or where did I waste time? Did I
+I struggled with the precision of the double data-type doing simple arithmetic
+operations. I wasted time attempting to track down where in the code the
+variable lost precision, then attempting to consistently get the correct number
+of pennies without using a round function or building my own rounding function.
+
+I tried multiple combinations of casting first versus completing my calculations
+before casting, changing the order of the calculations and changing how the
+coins variable was calculated. Ultimately, to consistently get the correct
+answer, I found it best to use the math rounding function and would've saved
+time had I decided to go with that first, rather than experimenting with the
+precision of doubles and how to manipulate them.
