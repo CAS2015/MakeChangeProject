@@ -9,8 +9,15 @@ public class MakeChange {
 		double itemPrice = getItemPrice(sc);
 		double payment = getPayment(sc);
 		makeChange(itemPrice, payment);
-
 		sc.close();
+	}
+	
+	private static void printOutput(int numOfCurrency, int remainingCurrency, String singular, String plural) {
+		String printOutput = numOfCurrency + " ";
+		printOutput += numOfCurrency == 1 ?	singular : plural;
+		printOutput += remainingCurrency > 0 ?	", " : ".";
+		System.out.print(printOutput);
+		
 	}
 
 	private static void makeChange(double itemPrice, double payment) {
@@ -19,53 +26,56 @@ public class MakeChange {
 			System.out.println("Error: You did not give enough money to pay for item.");
 		} 
 		else if (itemPrice == payment) {
+			//If they have given exact change, print no change statement
 			System.out.println("You gave the exact amount! No change for you.");
 		}
 		else {
-			// If they have given enough money then subtract itemPrice from payment to get
-			// change
+			// If they have given enough money then subtract itemPrice from payment to get change in bills and coins
 
 			double change = payment - itemPrice;
 			int bills = (int) change;
 			int coins = (int) Math.round((change- bills) * 100);
 
-			// convert change into denominations
+			// convert change into denominations and print statements for the change
 			System.out.print("Your change is: ");
 			if (bills >= 20) {
-				int denomination = (int) bills / 20;
-				System.out.print(denomination + "-$20  ");
+				int numOfBills = (int) bills / 20;
 				bills %= 20;
+				printOutput(numOfBills, bills, "twenty dollar bill", "twenty dollar bills");
+
 			}
 			if (bills >= 10) {
-				int denomination = (int) bills / 10;
-				System.out.print(denomination + "-$10  ");
+				int numOfBills = (int) bills / 10;
 				bills %= 10;
+				printOutput(numOfBills, bills, "ten dollar bill", "ten dollar bills");
 			}
 			if (bills >= 5) {
-				int denomination = (int) bills / 5;
-				System.out.print(denomination + "-$5  ");
+				int numOfBills = (int) bills / 5;
 				bills %= 5;
+				printOutput(numOfBills, bills, "five dollar bill", "five dollar bills");
 			}
 			if (bills >= 1) {
-				System.out.print(bills + "-$1  ");
+				int remainder = coins > 0 ? 1 : 0;
+				printOutput(bills, remainder, "one dollar bill", "one dollar bills");
 			}
 			if (coins >= 25) {
-				int denomination = (int) coins / 25;
-				System.out.print(denomination + "-25c  ");
+				int numOfCoins = (int) coins / 25;
 				coins %= 25;
+				printOutput(numOfCoins, coins, "quarter", "quarters");
 			}
 			if (coins >= 10) {
-				int denomination = (int) coins / 10;
-				System.out.print(denomination + "-10c  ");
+				int numOfCoins = (int) coins / 10;
 				coins %= 10;
+				printOutput(numOfCoins, coins, "dime", "dimes");
 			}
 			if (coins >= 5) {
-				int denomination = (int) coins / 5;
-				System.out.print(denomination + "-5c  ");
+				int numOfCoins = (int) coins / 5;
 				coins %= 5;
+				printOutput(numOfCoins, coins, "nickel", "nickels");
 			}
 			if (coins >= 1) {
-				System.out.print(coins + "-1c  ");
+				int remainder = 0;
+				printOutput(coins, remainder, "penny", "pennies");
 			}
 		}
 
